@@ -1,0 +1,35 @@
+{
+  "name": "anistop",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
+  },
+  "dependencies": {
+    "lint-staged": "^12.4.1",
+    "vue": "^3.2.25",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "husky": "^8.0.1",
+    "naive-ui": "^2.29.0",
+    "prettier": "^2.6.2",
+    "sass": "^1.52.1",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9",
+    "vue-tsc": "^0.34.7"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn prettier --write ."
+    ],
+    "*.vue": [
+      "yarn prettier --write ."
+    ]
+  }
+}
