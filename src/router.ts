@@ -1,11 +1,11 @@
-import App from "./App.vue";
+import Home from "./pages/Home.vue";
 
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    component: App,
+    component: Home,
   },
 ];
 
