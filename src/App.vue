@@ -9,14 +9,16 @@
 
 :root {
   --primary-100: #5edce5;
-  --secondary-100: #434343;
-  --background-100: #f5f9ff;
+  --primary-40: rgba(94, 220, 229, 0.4);
+  --background-100: #2c2c32;
+  --secondary-100: #f5f9ff;
 }
 
 * {
   padding: 0;
   margin: 0;
   font-family: "Nunito", sans-serif;
+  box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
