@@ -1,6 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Flash from "./components/Flash.vue";
+</script>
 
 <template>
+  <Flash />
   <router-view></router-view>
 </template>
 
@@ -12,6 +15,12 @@
   --primary-40: rgba(94, 220, 229, 0.4);
   --background-100: #2c2c32;
   --secondary-100: #f5f9ff;
+
+  --success-100: rgba(0, 204, 0, 1);
+  --success-60: rgba(0, 204, 0, 0.6);
+
+  --error-100: rgba(255, 0, 0, 1);
+  --error-60: rgba(255, 0, 0, 0.6);
 }
 
 * {

@@ -5,6 +5,7 @@ import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
 import TextInput from "../components/TextInput.vue";
 import Button from "../components/Button.vue";
+import { setFlashCard, flash } from "../store/flash";
 
 const formData = reactive({
   identifier: "",
@@ -12,9 +13,8 @@ const formData = reactive({
 });
 
 async function submitForm() {
-  const data = await getData(`${ROOT}/auth/login`, formData, "post");
-
-  console.log(data);
+  const response = await getData(`${ROOT}/auth/login`, formData, "post");
+  setFlashCard(response.success, response.message ?? response.error);
 }
 </script>
 
