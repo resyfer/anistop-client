@@ -21,10 +21,12 @@ async function submitForm() {
   if (response.success) {
     const userResponse = await getData<User>(`${ROOT}/user`);
 
-    auth.isLoggedIn = true;
-    auth.user = userResponse.message!;
+    if (userResponse.success) {
+      auth.isLoggedIn = true;
+      auth.user = userResponse.message!;
 
-    router.push("/dashboard");
+      router.push("/dashboard");
+    }
   }
 }
 </script>
