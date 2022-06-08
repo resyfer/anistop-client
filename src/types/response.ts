@@ -1,4 +1,4 @@
-interface JSONResponse<T> {
+interface JSONResponse<T = string> {
   success: boolean;
   message?: T;
   error?: string;

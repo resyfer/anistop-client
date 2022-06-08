@@ -1,5 +1,43 @@
 <script setup lang="ts">
 import Flash from "./components/Flash.vue";
+import router from "./router";
+import auth from "./store/auth";
+import { onBeforeMount } from "vue";
+import { getData } from "./helpers/fetch";
+import { ROOT } from "./helpers/constants";
+import { User } from "./types/user";
+
+const publicRoutes = ["Home", "Login", "Signup", "OTP"];
+
+router.beforeEach(async (to, _) => {
+  console.log(auth, to.name);
+  if (!auth.isLoggedIn && publicRoutes.indexOf(to.name as string) !== -1) {
+    return true;
+  } else if (
+    auth.isLoggedIn &&
+    publicRoutes.indexOf(to.name as string) === -1
+  ) {
+    return true;
+  } else if (
+    auth.isLoggedIn &&
+    publicRoutes.indexOf(to.name as string) !== -1
+  ) {
+    return "/dashboard";
+  } else {
+    return "/";
+  }
+});
+
+onBeforeMount(async () => {
+  const response = await getData<User>(`${ROOT}/user`);
+
+  if (response.success) {
+    auth.isLoggedIn = true;
+    auth.user = response.message!;
+
+    router.push("/dashboard");
+  }
+});
 </script>
 
 <template>

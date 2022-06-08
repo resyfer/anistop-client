@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-
 interface Props {
-  placeholder?: string;
   modelValue: string;
   type?: "text" | "password";
 }
@@ -11,43 +8,16 @@ interface Emits {
   "update:modelValue": string;
 }
 
-enum ViewState {
-  TEXT,
-  PASSWORD,
-}
-
-const { placeholder, type: initialType, modelValue } = defineProps<Props>();
+const { modelValue } = defineProps<Props>();
 defineEmits<Emits>();
-
-let type = ref(initialType);
-
-const view = ref(ViewState.PASSWORD);
-
-function toggleView() {
-  if (view.value === ViewState.PASSWORD) {
-    view.value = ViewState.TEXT;
-    type.value = "text";
-  } else {
-    view.value = ViewState.PASSWORD;
-    type.value = "password";
-  }
-}
 </script>
 
 <template>
   <div class="input">
     <input
-      :type="type ?? 'text'"
-      :placeholder="placeholder"
+      type="date"
       :value="modelValue"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
-
-    <template v-if="type === 'password' && view === ViewState.PASSWORD">
-      <i class="fa-solid fa-eye" @click="toggleView"></i>
-    </template>
-    <template v-else-if="type === 'text' && view === ViewState.TEXT">
-      <i class="fa-solid fa-eye-slash" @click="toggleView"></i>
-    </template>
   </div>
 </template>
 

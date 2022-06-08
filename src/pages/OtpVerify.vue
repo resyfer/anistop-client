@@ -1,53 +1,43 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
-import router from "../router";
 import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
 import TextInput from "../components/TextInput.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
-import auth from "../store/auth";
-import { User } from "../types/user";
 
 const formData = reactive({
   identifier: "",
-  password: "",
+  otp: "",
 });
 
 async function submitForm() {
-  const response = await getData(`${ROOT}/auth/login`, "post", formData);
+  const response = await getData(`${ROOT}/otp/verify`, "post", formData);
   setFlashCard(response.success, response.message ?? response.error);
+}
 
-  if (response.success) {
-    const userResponse = await getData<User>(`${ROOT}/user`);
-
-    auth.isLoggedIn = true;
-    auth.user = userResponse.message!;
-
-    router.push("/dashboard");
-  }
+async function requestNewOtp() {
+  const response = await getData(`${ROOT}/otp/new`, "post", formData);
+  setFlashCard(response.success, response.message ?? response.error);
 }
 </script>
 
 <template>
-  <div class="login-cont">
-    <h1>Login</h1>
-    <div class="login-input-cont">
+  <div class="otp-verify-cont">
+    <h1>Verify OTP</h1>
+    <div class="otp-verify-input-cont">
       <TextInput placeholder="Username/Email*" v-model="formData.identifier" />
-      <TextInput
-        placeholder="Password*"
-        type="password"
-        v-model="formData.password" />
+      <TextInput placeholder="OTP*" v-model="formData.otp" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
-    <div class="helper-txt" @click="router.push('/signup')">
-      Haven't registered yet? Sign Up here
+    <div class="helper-txt" @click="requestNewOtp">
+      OTP Expired? Request new OTP.
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-div.login-cont {
+div.otp-verify-cont {
   position: absolute;
   width: 40%;
   height: 50%;
