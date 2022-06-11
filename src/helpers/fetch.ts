@@ -6,7 +6,8 @@ type MethodType = "get" | "post" | "patch" | "delete";
 async function getData<T = string>(
   url: string,
   method: MethodType = "get",
-  data?: any
+  data?: any,
+  headers?: { [key: string]: string }
 ): Promise<JSONResponse<T>> {
   return (
     await axios({
@@ -14,6 +15,7 @@ async function getData<T = string>(
       url,
       data,
       withCredentials: true,
+      headers,
     })
   ).data;
 }
