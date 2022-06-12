@@ -3,8 +3,8 @@ import { reactive } from "vue";
 import router from "../router";
 import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
-import TextInput from "../components/TextInput.vue";
-import DateInput from "../components/DateInput.vue";
+import InputText from "../components/InputText.vue";
+import InputDate from "../components/InputDate.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
 
@@ -17,7 +17,7 @@ const formData = reactive({
 });
 
 async function submitForm() {
-  const response = await getData(`${ROOT}/auth/signup`, formData, "post");
+  const response = await getData(`${ROOT}/auth/signup`, "post", formData);
   setFlashCard(response.success, response.message ?? response.error);
 
   if (response.success) {
@@ -30,14 +30,14 @@ async function submitForm() {
   <div class="signup-cont">
     <h1>Signup</h1>
     <div class="signup-input-cont">
-      <TextInput placeholder="Name*" v-model="formData.name" />
-      <TextInput placeholder="Username*" v-model="formData.username" />
-      <TextInput placeholder="Email*" v-model="formData.email" />
-      <TextInput
+      <InputText placeholder="Name*" v-model="formData.name" />
+      <InputText placeholder="Username*" v-model="formData.username" />
+      <InputText placeholder="Email*" v-model="formData.email" />
+      <InputText
         placeholder="Password*"
         type="password"
         v-model="formData.password" />
-      <DateInput v-model="formData.dob" />
+      <InputDate v-model="formData.dob" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
     <div class="helper-txt" @click="router.push('/login')">

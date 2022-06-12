@@ -3,7 +3,7 @@ import { reactive } from "vue";
 import router from "../router";
 import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
-import TextInput from "../components/TextInput.vue";
+import InputText from "../components/InputText.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
 import auth from "../store/auth";
@@ -35,8 +35,8 @@ async function submitForm() {
   <div class="login-cont">
     <h1>Login</h1>
     <div class="login-input-cont">
-      <TextInput placeholder="Username/Email*" v-model="formData.identifier" />
-      <TextInput
+      <InputText placeholder="Username/Email*" v-model="formData.identifier" />
+      <InputText
         placeholder="Password*"
         type="password"
         v-model="formData.password" />

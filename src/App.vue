@@ -74,4 +74,18 @@ body {
   background-color: var(--background-100);
   color: var(--secondary-100);
 }
+
+/**Scrollbar**/
+::-webkit-scrollbar {
+  width: 1vh;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-100);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3vh;
+  background: var(--primary-100);
+}
 </style>

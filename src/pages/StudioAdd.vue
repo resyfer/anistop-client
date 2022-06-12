@@ -2,8 +2,8 @@
 import { reactive } from "vue";
 import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
-import TextInput from "../components/TextInput.vue";
-import FileInput from "../components/FileInput.vue";
+import InputText from "../components/InputText.vue";
+import InputFile from "../components/InputFile.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
 
@@ -33,8 +33,8 @@ async function submitForm() {
   <div class="studio-cont">
     <h1>Add Studio</h1>
     <div class="studio-input-cont">
-      <TextInput placeholder="Name*" v-model="form.name" />
-      <FileInput placeholder="Logo" v-model="form.logoUrl" />
+      <InputText placeholder="Name*" v-model="form.name" />
+      <InputFile placeholder="Logo" v-model="form.logoUrl" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
   </div>

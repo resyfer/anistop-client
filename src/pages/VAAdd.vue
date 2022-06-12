@@ -2,9 +2,9 @@
 import { reactive } from "vue";
 import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
-import TextInput from "../components/TextInput.vue";
-import DateInput from "../components/DateInput.vue";
-import FileInput from "../components/FileInput.vue";
+import InputText from "../components/InputText.vue";
+import InputDate from "../components/InputDate.vue";
+import InputFile from "../components/InputFile.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
 
@@ -40,10 +40,10 @@ async function submitForm() {
   <div class="va-cont">
     <h1>Add Voice Actor</h1>
     <div class="va-input-cont">
-      <TextInput placeholder="Name*" v-model="form.name" />
-      <DateInput v-model="form.dob" />
-      <TextInput placeholder="More" v-model="form.more" />
-      <FileInput placeholder="Image" v-model="form.imgUrl" />
+      <InputText placeholder="Name*" v-model="form.name" />
+      <InputDate v-model="form.dob" />
+      <InputText placeholder="More" v-model="form.more" />
+      <InputFile placeholder="Image" v-model="form.imgUrl" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
   </div>

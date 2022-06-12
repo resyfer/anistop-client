@@ -3,7 +3,7 @@ import router from "../router";
 </script>
 
 <template>
-  <div @click="router.push('/va/add')">Dashboard</div>
+  <div @click="router.push('/anime/add')">Dashboard</div>
 </template>
 
 <style lang="scss"></style>

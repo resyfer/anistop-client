@@ -2,7 +2,7 @@
 import { reactive } from "vue";
 import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
-import TextInput from "../components/TextInput.vue";
+import InputText from "../components/InputText.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
 
@@ -26,8 +26,8 @@ async function requestNewOtp() {
   <div class="otp-verify-cont">
     <h1>Verify OTP</h1>
     <div class="otp-verify-input-cont">
-      <TextInput placeholder="Username/Email*" v-model="formData.identifier" />
-      <TextInput placeholder="OTP*" v-model="formData.otp" />
+      <InputText placeholder="Username/Email*" v-model="formData.identifier" />
+      <InputText placeholder="OTP*" v-model="formData.otp" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
     <div class="helper-txt" @click="requestNewOtp">
