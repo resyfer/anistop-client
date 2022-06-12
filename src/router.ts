@@ -7,6 +7,7 @@ import Profile from "./pages/Profile.vue";
 import AnimeAdd from "./pages/AnimeAdd.vue";
 import StudioAdd from "./pages/StudioAdd.vue";
 import VAAdd from "./pages/VAAdd.vue";
+import AnimeSeasonAdd from "./pages/AnimeSeasonAdd.vue";
 
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
@@ -52,6 +53,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/va/add",
     component: VAAdd,
+  },
+  {
+    path: "/anime_season/add",
+    component: AnimeSeasonAdd,
   },
 ];
 

@@ -8,11 +8,10 @@ interface Props {
   }[];
   modelValue: string[] | string;
   multiple?: boolean;
+  placeholder: string;
 }
 
-const { options, multiple } = defineProps<Props>();
-
-const select = multiple ? ref<string[]>([]) : ref(Object.values(options[0])[0]);
+let { options, multiple, placeholder } = defineProps<Props>();
 </script>
 
 <template>
@@ -20,6 +19,7 @@ const select = multiple ? ref<string[]>([]) : ref(Object.values(options[0])[0]);
     :multiple="multiple"
     @input="$emit('update:modelValue', (multiple) ? [...($event.target as HTMLSelectElement).options].filter(option => option.selected).map(option => option.value) : ($event.target as HTMLSelectElement).value)"
     :class="{ multiple }">
+    <option value="" selected disabled>{{ placeholder }}</option>
     <template v-for="option in options">
       <option :value="Object.values(option)[0]">
         {{ toCapitalCase(Object.keys(option)[0]) }}

@@ -30,11 +30,11 @@ async function submitForm() {
   <div class="signup-cont">
     <h1>Signup</h1>
     <div class="signup-input-cont">
-      <InputText placeholder="Name*" v-model="formData.name" />
-      <InputText placeholder="Username*" v-model="formData.username" />
-      <InputText placeholder="Email*" v-model="formData.email" />
+      <InputText placeholder="Name *" v-model="formData.name" />
+      <InputText placeholder="Username *" v-model="formData.username" />
+      <InputText placeholder="Email *" v-model="formData.email" />
       <InputText
-        placeholder="Password*"
+        placeholder="Password *"
         type="password"
         v-model="formData.password" />
       <InputDate v-model="formData.dob" />

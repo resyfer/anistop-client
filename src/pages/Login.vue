@@ -35,9 +35,9 @@ async function submitForm() {
   <div class="login-cont">
     <h1>Login</h1>
     <div class="login-input-cont">
-      <InputText placeholder="Username/Email*" v-model="formData.identifier" />
+      <InputText placeholder="Username/Email *" v-model="formData.identifier" />
       <InputText
-        placeholder="Password*"
+        placeholder="Password *"
         type="password"
         v-model="formData.password" />
     </div>

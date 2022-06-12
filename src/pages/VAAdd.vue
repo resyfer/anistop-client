@@ -40,10 +40,10 @@ async function submitForm() {
   <div class="va-cont">
     <h1>Add Voice Actor</h1>
     <div class="va-input-cont">
-      <InputText placeholder="Name*" v-model="form.name" />
+      <InputText placeholder="Name *" v-model="form.name" />
       <InputDate v-model="form.dob" />
       <InputText placeholder="More" v-model="form.more" />
-      <InputFile placeholder="Image" v-model="form.imgUrl" />
+      <InputFile placeholder="Image *" v-model="form.imgUrl" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
   </div>

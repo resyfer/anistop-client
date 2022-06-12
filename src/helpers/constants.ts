@@ -54,4 +54,13 @@ const GENRE_OPTIONS: {
   { Vampire: "VAMPIRE" },
 ];
 
-export { ROOT, COUNTRY_OPTIONS, GENRE_OPTIONS };
+const ANIME_SEASON_OPTIONS: {
+  [key: string]: string;
+}[] = [
+  { WINTER: "WINTER" },
+  { SPRING: "SPRING" },
+  { SUMMER: "SUMMER" },
+  { FALL: "FALL" },
+];
+
+export { ROOT, COUNTRY_OPTIONS, GENRE_OPTIONS, ANIME_SEASON_OPTIONS };

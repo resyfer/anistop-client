@@ -33,8 +33,8 @@ async function submitForm() {
   <div class="studio-cont">
     <h1>Add Studio</h1>
     <div class="studio-input-cont">
-      <InputText placeholder="Name*" v-model="form.name" />
-      <InputFile placeholder="Logo" v-model="form.logoUrl" />
+      <InputText placeholder="Name *" v-model="form.name" />
+      <InputFile placeholder="Logo *" v-model="form.logoUrl" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
   </div>

@@ -10,11 +10,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": [
-      "esnext",
-      "dom",
-      "DOM.Iterable"
-    ],
+    "lib": ["esnext", "dom", "DOM.Iterable"],
     "skipLibCheck": true,
     "types": ["naive-ui/volar"]
   },

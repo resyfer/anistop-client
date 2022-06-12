@@ -56,24 +56,24 @@ async function submitForm() {
   <div class="anime-cont">
     <h1>Add Anime</h1>
     <div class="anime-input-cont">
-      <InputText placeholder="English Name*" v-model="form.englishName" />
-      <InputText placeholder="Japanese Name*" v-model="form.japaneseName" />
-      <InputArea placeholder="Description*" v-model="form.description" />
+      <InputText placeholder="English Name *" v-model="form.englishName" />
+      <InputText placeholder="Japanese Name *" v-model="form.japaneseName" />
+      <InputArea placeholder="Description *" v-model="form.description" />
       <InputChoice
-        placeholder="Genres"
+        placeholder="Genres *"
         :options="COUNTRY_OPTIONS"
         v-model="form.country" />
       <InputChoice
-        placeholder="Country"
+        placeholder="Country *"
         multiple
         :options="GENRE_OPTIONS"
         v-model="form.genres" />
       <InputArea
-        placeholder="Keywords* (separate with a comma)"
+        placeholder="Keywords * (separate with a comma)"
         v-model="form.keywords" />
-      <InputFile placeholder="Poster Image" v-model="form.posterUrl" />
+      <InputFile placeholder="Poster Image *" v-model="form.posterUrl" />
       <InputFile
-        placeholder="Background Image"
+        placeholder="Background Image *"
         v-model="form.backgroundImgUrl" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />

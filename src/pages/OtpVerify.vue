@@ -26,8 +26,8 @@ async function requestNewOtp() {
   <div class="otp-verify-cont">
     <h1>Verify OTP</h1>
     <div class="otp-verify-input-cont">
-      <InputText placeholder="Username/Email*" v-model="formData.identifier" />
-      <InputText placeholder="OTP*" v-model="formData.otp" />
+      <InputText placeholder="Username/Email *" v-model="formData.identifier" />
+      <InputText placeholder="OTP *" v-model="formData.otp" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
     <div class="helper-txt" @click="requestNewOtp">
