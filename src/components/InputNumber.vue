@@ -18,7 +18,7 @@ defineEmits<Emits>();
       type="number"
       :placeholder="placeholder"
       :value="modelValue"
-      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
+      @input="$emit('update:modelValue', parseInt(($event.target as HTMLInputElement).value))" />
   </div>
 </template>
 

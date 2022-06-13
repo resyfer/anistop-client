@@ -63,4 +63,25 @@ const ANIME_SEASON_OPTIONS: {
   { FALL: "FALL" },
 ];
 
-export { ROOT, COUNTRY_OPTIONS, GENRE_OPTIONS, ANIME_SEASON_OPTIONS };
+const EPISODE_TYPE_OPTIONS: {
+  [key: string]: string;
+}[] = [{ SUB: "SUB" }, { DUB: "DUB" }];
+
+const SEASON_TYPE_OPTIONS: {
+  [key: string]: string;
+}[] = [
+  { "TV Series": "TV_SERIES" },
+  { OVA: "OVA" },
+  { ONA: "ONA" },
+  { MOVIE: "MOVIE" },
+  { SPECIAL: "SPECIAL" },
+];
+
+export {
+  ROOT,
+  COUNTRY_OPTIONS,
+  GENRE_OPTIONS,
+  ANIME_SEASON_OPTIONS,
+  EPISODE_TYPE_OPTIONS,
+  SEASON_TYPE_OPTIONS,
+};
