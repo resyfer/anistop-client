@@ -92,11 +92,14 @@ onBeforeMount(async () => {
           @click="router.push(`/anime/${animeData.id}/season/${season.id}`)">
           <div class="name bold">{{ season.name }}</div>
           <div class="episodes">{{ season._count.episodes }} Episode(s)</div>
-          <div :class="['episode-type', season.episodeType.toLowerCase()]">
-            {{ season.episodeType }}
-          </div>
-          <div class="season-type" v-if="season.seasonType !== 'TV_SERIES'">
-            {{ season.seasonType }}
+
+          <div class="type">
+            <div class="season-type" v-if="season.seasonType !== 'TV_SERIES'">
+              {{ season.seasonType }}
+            </div>
+            <div :class="['episode-type', season.episodeType.toLowerCase()]">
+              {{ season.episodeType }}
+            </div>
           </div>
         </div>
       </template>
@@ -122,35 +125,47 @@ onBeforeMount(async () => {
 
     <div class="characters">
       <div class="sub-title">Characters</div>
-      <template v-for="character in animeData.characters">
-        <div
-          class="character"
-          @click="
-            router.push(`/anime/${animeData.id}/character/${character.id}`)
-          ">
-          <div class="left">
-            <div class="character-img img">
-              <img :src="character.imgUrl" :alt="character.name" />
+      <div class="character-cont">
+        <template v-for="character in animeData.characters">
+          <div
+            class="character"
+            @click="
+              router.push(`/anime/${animeData.id}/character/${character.id}`)
+            ">
+            <div class="left">
+              <div class="character-img img">
+                <img :src="character.imgUrl" :alt="character.name" />
+              </div>
+            </div>
+            <div class="middle">
+              <div class="character-name bold">
+                {{ character.name }}
+              </div>
+              <div class="favorites">
+                {{ character._count.characterFavorites }} Favorites
+              </div>
+              <div class="va-name">
+                VA: <span class="bold">{{ character.vas[0].name }}</span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="character-va img">
+                <img :src="character.vas[0].imgUrl" :alt="character.name" />
+              </div>
             </div>
           </div>
-          <div class="middle">
-            <div class="character-name bold">
-              {{ character.name }}
-            </div>
-            <div class="favorites">
-              {{ character._count.characterFavorites }} Favorites
-            </div>
-            <div class="va-name">
-              VA: <span class="bold">{{ character.vas[0].name }}</span>
-            </div>
-          </div>
-          <div class="right">
-            <div class="character-va img">
-              <img :src="character.vas[0].imgUrl" :alt="character.name" />
-            </div>
-          </div>
-        </div>
-      </template>
+        </template>
+      </div>
+
+      <div
+        class="add-character helper-txt"
+        @click="router.push(`/anime/${animeData.id}/character/add`)">
+        Add Character
+      </div>
+
+      <div class="add-va helper-txt" @click="router.push(`/va/add`)">
+        Add Voice Actor
+      </div>
     </div>
   </div>
 </template>
@@ -267,6 +282,14 @@ div.anime {
         text-align: center;
       }
 
+      div.type {
+        display: flex;
+
+        div {
+          margin: 0 1vh;
+        }
+      }
+
       div.episode-type {
         padding: 2vh;
         border-radius: 1vh;
@@ -283,6 +306,8 @@ div.anime {
       }
 
       div.season-type {
+        padding: 2vh;
+        border-radius: 1vh;
         background-color: rgb(255, 89, 47);
         color: var(--background-100);
       }
@@ -320,55 +345,60 @@ div.anime {
   }
 
   div.characters {
-    div.character {
+    div.character-cont {
       display: flex;
-      width: 45%;
-      height: 30vh;
-      justify-content: space-between;
-      margin: 1vh;
-      border-radius: 2vh;
-      overflow: hidden;
-      border: 0.2vh solid var(--primary-100);
-
-      div.img {
-        position: relative;
-        height: 100%;
-        aspect-ratio: 3/4;
-        overflow: hidden;
-
-        img {
-          position: absolute;
-          top: 0;
-          height: 100%;
-        }
-      }
-
-      div.left img {
-        left: 0;
-      }
-
-      div.right img {
-        right: 0;
-      }
-
-      div.middle {
-        width: calc(100% - 2 * (3 / 4 * 30vh));
-        height: 100%;
-        padding: 3vh 2vh;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      div.character {
         display: flex;
-        flex-direction: column;
+        width: 45%;
+        height: 30vh;
         justify-content: space-between;
+        margin: 1vh;
+        border-radius: 2vh;
+        overflow: hidden;
+        border: 0.2vh solid var(--primary-100);
 
-        div {
-          width: 100%;
+        div.img {
+          position: relative;
+          height: 100%;
+          aspect-ratio: 3/4;
+          overflow: hidden;
+
+          img {
+            position: absolute;
+            top: 0;
+            height: 100%;
+          }
         }
 
-        div.character-name {
-          font-size: 1.5rem;
+        div.left img {
+          left: 0;
         }
 
-        div.va-name {
-          text-align: right;
+        div.right img {
+          right: 0;
+        }
+
+        div.middle {
+          width: calc(100% - 2 * (3 / 4 * 30vh));
+          height: 100%;
+          padding: 3vh 2vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          div {
+            width: 100%;
+          }
+
+          div.character-name {
+            font-size: 1.5rem;
+          }
+
+          div.va-name {
+            text-align: right;
+          }
         }
       }
     }

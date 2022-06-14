@@ -5,6 +5,7 @@ import { ROOT } from "../helpers/constants";
 import InputText from "../components/InputText.vue";
 import InputDate from "../components/InputDate.vue";
 import InputFile from "../components/InputFile.vue";
+import InputArea from "../components/InputArea.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
 
@@ -42,7 +43,7 @@ async function submitForm() {
     <div class="va-input-cont">
       <InputText placeholder="Name *" v-model="form.name" />
       <InputDate v-model="form.dob" />
-      <InputText placeholder="More" v-model="form.more" />
+      <InputArea placeholder="More" v-model="form.more" />
       <InputFile placeholder="Image *" v-model="form.imgUrl" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />

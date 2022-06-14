@@ -24,6 +24,10 @@ function setFlashCard(success: null | boolean, data?: string) {
   } else {
     flash.error = data!;
   }
+
+  setTimeout(() => {
+    flash.success = null;
+  }, 5000);
 }
 
 export { flash, setFlashCard };

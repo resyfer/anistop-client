@@ -68,12 +68,5 @@ div.login-cont {
   .submit-btn {
     margin: 1vh auto;
   }
-
-  .helper-txt {
-    font-style: italic;
-    text-decoration: underline;
-    margin: 1vh auto;
-    cursor: pointer;
-  }
 }
 </style>

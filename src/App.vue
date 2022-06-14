@@ -12,6 +12,8 @@ const publicRoutes = ["Home", "Login", "Signup", "OTP"];
 const route = useRoute();
 
 router.beforeEach(async (to, _) => {
+  window.scrollTo(0, 0); // To go to start on changing pages
+
   if (auth.isLoggedIn == null) {
     return true;
   } else if (
@@ -125,5 +127,14 @@ div.sub-title {
   border-bottom: 0.2vh solid var(--primary-100);
   margin: 2vh;
   font-size: 1.2rem;
+}
+
+.helper-txt {
+  font-style: italic;
+  text-decoration: underline;
+  margin: 1vh auto;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 3vh;
 }
 </style>
