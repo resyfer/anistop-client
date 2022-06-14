@@ -41,8 +41,6 @@ onBeforeMount(async () => {
     auth.isLoggedIn = true;
     auth.user = response.message!;
 
-    console.log(route.name);
-
     if (publicRoutes.indexOf(route.name as string) !== -1) {
       router.push("/dashboard");
     }
@@ -101,7 +99,7 @@ body {
   background: var(--primary-100);
 }
 
-span.bold {
+.bold {
   font-weight: bold;
   color: var(--primary-100);
 }

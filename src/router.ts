@@ -4,7 +4,10 @@ import Signup from "./pages/Signup.vue";
 import OtpVerify from "./pages/OtpVerify.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import Profile from "./pages/Profile.vue";
+
+import Anime from "./pages/Anime.vue";
 import AnimeAdd from "./pages/AnimeAdd.vue";
+
 import StudioAdd from "./pages/StudioAdd.vue";
 import VAAdd from "./pages/VAAdd.vue";
 import AnimeSeasonAdd from "./pages/AnimeSeasonAdd.vue";
@@ -49,6 +52,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/anime/add",
     component: AnimeAdd,
+  },
+  {
+    path: "/anime/:animeId",
+    component: Anime,
   },
   {
     path: "/anime/:animeId/season/add",
