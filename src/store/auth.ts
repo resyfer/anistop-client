@@ -2,12 +2,12 @@ import { reactive } from "vue";
 import { User } from "../types/user";
 
 interface Auth {
-  isLoggedIn: boolean;
+  isLoggedIn: boolean | null;
   user: User | null;
 }
 
 const auth = reactive<Auth>({
-  isLoggedIn: false,
+  isLoggedIn: null,
   user: null,
 });
 

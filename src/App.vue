@@ -6,12 +6,18 @@ import { onBeforeMount } from "vue";
 import { getData } from "./helpers/fetch";
 import { ROOT } from "./helpers/constants";
 import { User } from "./types/user";
+import { useRoute } from "vue-router";
 
 const publicRoutes = ["Home", "Login", "Signup", "OTP"];
+const route = useRoute();
 
 router.beforeEach(async (to, _) => {
-  console.log(auth, to.name);
-  if (!auth.isLoggedIn && publicRoutes.indexOf(to.name as string) !== -1) {
+  if (auth.isLoggedIn == null) {
+    return true;
+  } else if (
+    auth.isLoggedIn === false &&
+    publicRoutes.indexOf(to.name as string) !== -1
+  ) {
     return true;
   } else if (
     auth.isLoggedIn &&
@@ -35,7 +41,13 @@ onBeforeMount(async () => {
     auth.isLoggedIn = true;
     auth.user = response.message!;
 
-    router.push("/dashboard");
+    console.log(route.name);
+
+    if (publicRoutes.indexOf(route.name as string) !== -1) {
+      router.push("/dashboard");
+    }
+  } else {
+    router.push("/");
   }
 });
 </script>
@@ -87,5 +99,33 @@ body {
 ::-webkit-scrollbar-thumb {
   border-radius: 3vh;
   background: var(--primary-100);
+}
+
+span.bold {
+  font-weight: bold;
+  color: var(--primary-100);
+}
+
+div.background-tint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.25) 75%
+  );
+}
+
+div.sub-title {
+  padding-left: 4vh;
+  border-bottom: 0.2vh solid var(--primary-100);
+  margin: 2vh;
+  font-size: 1.2rem;
 }
 </style>
