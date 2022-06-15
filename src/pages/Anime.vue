@@ -67,12 +67,16 @@ onBeforeMount(async () => {
         <img
           class="background-pic"
           :src="animeData.backgroundImgUrl"
-          :alt="animeData.englishName" />
+          :alt="animeData.englishName"
+          loading="lazy" />
       </div>
 
       <div class="intro">
         <div class="poster-pic">
-          <img :src="animeData.posterUrl" :alt="animeData.englishName" />
+          <img
+            :src="animeData.posterUrl"
+            :alt="animeData.englishName"
+            loading="lazy" />
         </div>
         <div class="anime-intro-info">
           <div class="name">
@@ -134,7 +138,10 @@ onBeforeMount(async () => {
             ">
             <div class="left">
               <div class="character-img img">
-                <img :src="character.imgUrl" :alt="character.name" />
+                <img
+                  :src="character.imgUrl"
+                  :alt="character.name"
+                  loading="lazy" />
               </div>
             </div>
             <div class="middle">
@@ -150,7 +157,10 @@ onBeforeMount(async () => {
             </div>
             <div class="right">
               <div class="character-va img">
-                <img :src="character.vas[0].imgUrl" :alt="character.name" />
+                <img
+                  :src="character.vas[0].imgUrl"
+                  :alt="character.name"
+                  loading="lazy" />
               </div>
             </div>
           </div>
@@ -276,6 +286,16 @@ div.anime {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--primary-100);
+        color: var(--background-100);
+
+        div.bold {
+          color: var(--background-100);
+        }
+      }
 
       div.name {
         width: 50%;

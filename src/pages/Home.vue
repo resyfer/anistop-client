@@ -6,7 +6,7 @@ import Button from "../components/Button.vue";
 <template>
   <div class="intro">
     <div class="logo">
-      <img src="../assets/logo.svg" alt="Logo" />
+      <img src="../assets/logo.svg" alt="Logo" loading="lazy" />
     </div>
     <div class="title-cont">
       <h1>AniStop</h1>

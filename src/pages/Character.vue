@@ -76,12 +76,16 @@ async function toggleFavorite() {
         <img
           class="background-pic"
           :src="characterData.anime.backgroundImgUrl"
-          :alt="characterData.name" />
+          :alt="characterData.name"
+          loading="lazy" />
       </div>
 
       <div class="intro">
         <div class="profile-pic">
-          <img :src="characterData.imgUrl" :alt="characterData.name" />
+          <img
+            :src="characterData.imgUrl"
+            :alt="characterData.name"
+            loading="lazy" />
         </div>
         <div class="character-intro-info">
           <div class="name">
@@ -117,7 +121,8 @@ async function toggleFavorite() {
         <div class="img">
           <img
             :src="characterData.anime.posterUrl"
-            :alt="characterData.anime.englishName" />
+            :alt="characterData.anime.englishName"
+            loading="lazy" />
         </div>
         <div class="info">
           <span class="bold">{{ characterData.anime.englishName }}</span>
@@ -131,7 +136,7 @@ async function toggleFavorite() {
       <template v-for="va in characterData.vas">
         <div class="va">
           <div class="img">
-            <img :src="va.imgUrl" :alt="va.name" />
+            <img :src="va.imgUrl" :alt="va.name" loading="lazy" />
           </div>
           <div class="info">
             <span class="bold">{{ va.name }}</span>

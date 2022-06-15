@@ -60,11 +60,11 @@ async function submitForm() {
       <InputText placeholder="Japanese Name *" v-model="form.japaneseName" />
       <InputArea placeholder="Description *" v-model="form.description" />
       <InputChoice
-        placeholder="Genres *"
+        placeholder="Country *"
         :options="COUNTRY_OPTIONS"
         v-model="form.country" />
       <InputChoice
-        placeholder="Country *"
+        placeholder="Genre *"
         multiple
         :options="GENRE_OPTIONS"
         v-model="form.genres" />

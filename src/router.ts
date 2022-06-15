@@ -11,7 +11,11 @@ import AnimeAdd from "./pages/AnimeAdd.vue";
 import StudioAdd from "./pages/StudioAdd.vue";
 import VAAdd from "./pages/VAAdd.vue";
 import AnimeSeasonAdd from "./pages/AnimeSeasonAdd.vue";
+
+import Season from "./pages/Season.vue";
 import SeasonAdd from "./pages/SeasonAdd.vue";
+
+import EpisodeAdd from "./pages/EpisodeAdd.vue";
 
 import Character from "./pages/Character.vue";
 import CharacterAdd from "./pages/CharacterAdd.vue";
@@ -60,6 +64,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/anime/:animeId/season/add",
     component: SeasonAdd,
+  },
+  {
+    path: "/anime/:animeId/season/:seasonId",
+    component: Season,
+  },
+  {
+    path: "/anime/:animeId/season/:seasonId/episode/add",
+    component: EpisodeAdd,
   },
   {
     path: "/studio/add",

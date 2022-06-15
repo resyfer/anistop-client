@@ -7,9 +7,10 @@ interface Emits {
 
 interface Props {
   placeholder: string;
+  video?: boolean;
 }
 
-const { placeholder } = defineProps<Props>();
+const { placeholder, video } = defineProps<Props>();
 defineEmits<Emits>();
 
 const file = ref(`Upload ${placeholder}`);
@@ -28,7 +29,11 @@ function selectFile() {
   <div class="input">
     <input
       type="file"
-      accept="image/jpeg, image/png, image/jpg, image/svg"
+      :accept="
+        video
+          ? 'video/mp4, video/mov, video/mkv'
+          : 'image/jpeg, image/png, image/jpg, image/svg'
+      "
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).files![0])"
       @change="updateName"
       ref="inputElement" />

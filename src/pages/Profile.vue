@@ -20,7 +20,8 @@ async function getUser() {
     <img
       :src="auth.user!.imgUrl"
       :alt="auth.user!.username"
-      class="profile-img" />
+      class="profile-img"
+      loading="lazy" />
     <div class="name">{{auth.user!.name}}</div>
     <div class="username">{{auth.user!.username}}</div>
     <div class="hello" @click="getUser">Click</div>
