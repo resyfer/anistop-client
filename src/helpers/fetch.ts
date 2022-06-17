@@ -7,7 +7,8 @@ async function getData<T = string>(
   url: string,
   method: MethodType = "get",
   data?: any,
-  headers?: { [key: string]: string }
+  headers?: { [key: string]: string },
+  query?: any
 ): Promise<JSONResponse<T>> {
   return (
     await axios({
@@ -16,6 +17,7 @@ async function getData<T = string>(
       data,
       withCredentials: true,
       headers,
+      params: query,
     })
   ).data;
 }

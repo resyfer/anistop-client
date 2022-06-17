@@ -5,8 +5,8 @@ import { ROOT } from "../helpers/constants";
 import { getData } from "../helpers/fetch";
 import { setFlashCard } from "../store/flash";
 import router from "../router";
-import { toCapitalCase } from "../helpers/string";
-import { radioGroupInjectionKey } from "naive-ui/es/radio/src/use-radio";
+import InputChoice from "../components/InputChoice.vue";
+import { RATING_OPTIONS } from "../helpers/constants";
 
 const route = useRoute();
 
@@ -42,6 +42,10 @@ interface SeasonData {
     rating: number;
   };
 }
+
+const rating = reactive({
+  rating: "0",
+});
 
 let seasonData = reactive<SeasonData>({
   id: 0,
@@ -89,8 +93,31 @@ onBeforeMount(async () => {
     Object.assign(seasonData, response.message);
   } else {
     setFlashCard(response.success, response.error);
+    return;
+  }
+
+  const ratingResponse = await getData<{ rating: number }>(
+    `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/rating`
+  );
+
+  if (response.success) {
+    rating.rating = Object.values(
+      RATING_OPTIONS[10 - ratingResponse.message!.rating]
+    )[0];
+  } else {
+    setFlashCard(response.success, response.error);
   }
 });
+
+async function updateRating() {
+  const response = await getData(
+    `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/rating`,
+    "patch",
+    { rating: rating.rating }
+  );
+  setFlashCard(response.success, response.error ?? response.message);
+  router.go(0); // refresh page for updated rating
+}
 </script>
 
 <template>
@@ -113,29 +140,48 @@ onBeforeMount(async () => {
             loading="lazy" />
         </div>
         <div class="anime-intro-info">
-          <div class="name">
-            <div class="bold season-name">{{ seasonData.name }}</div>
-            <div
-              class="anime-name"
-              @click="router.push(`/anime/${route.params.animeId}`)">
-              Anime:
-              <span class="bold"
-                >{{ seasonData.anime.englishName }} ({{
-                  seasonData.anime.japaneseName
-                }})</span
-              >
+          <div class="main">
+            <div class="name">
+              <div class="bold season-name">{{ seasonData.name }}</div>
+              <div
+                class="anime-name"
+                @click="router.push(`/anime/${route.params.animeId}`)">
+                Anime:
+                <span class="bold"
+                  >{{ seasonData.anime.englishName }} ({{
+                    seasonData.anime.japaneseName
+                  }})</span
+                >
+              </div>
             </div>
           </div>
-          <div class="rating">
-            Rating:
-            <span class="bold">{{
-              seasonData._sum.rating == null
-                ? "N/A"
-                : seasonData._sum.rating / seasonData._count.rating
-            }}</span>
-          </div>
-          <div class="views">
-            Page Views: <span class="bold">{{ seasonData.views }}</span>
+          <div class="sub-main">
+            <div class="rating">
+              Rating:
+              <span class="bold">{{
+                seasonData._sum.rating == null
+                  ? "N/A"
+                  : (
+                      Math.round(
+                        (seasonData._sum.rating / seasonData._count.rating) *
+                          100
+                      ) / 100
+                    ).toFixed(2)
+              }}</span>
+            </div>
+            <div class="rating-input">
+              <InputChoice
+                :options="RATING_OPTIONS"
+                placeholder="Rating"
+                v-model="rating.rating"
+                @change="updateRating" />
+            </div>
+            <div class="users">
+              Users: <span class="bold">{{ seasonData._count.rating }}</span>
+            </div>
+            <div class="views">
+              Page Views: <span class="bold">{{ seasonData.views }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -169,7 +215,7 @@ div.season {
   div.background {
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 60vh;
 
     div.background-pic-cont {
       position: relative;
@@ -197,7 +243,7 @@ div.season {
       transform: translate(-50%, 0);
       display: flex;
       align-items: flex-end;
-      justify-content: space-around;
+      justify-content: space-evenly;
 
       div.poster-pic {
         position: relative;
@@ -219,11 +265,11 @@ div.season {
 
       div.anime-intro-info {
         height: 50%;
-        width: 60%;
+        width: 70%;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
+        flex-wrap: wrap;
 
         div {
           width: 100%;
@@ -237,7 +283,7 @@ div.season {
           flex-direction: column;
 
           div {
-            margin: 1vh;
+            margin: 1vh 0 0 0;
           }
 
           div.anime-name {
@@ -254,12 +300,23 @@ div.season {
           width: 100%;
           margin-top: 5vh;
         }
+
+        div.sub-main {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          align-items: center;
+
+          div {
+            width: 45%;
+          }
+        }
       }
     }
   }
 
   div.episodes {
-    margin-top: 30vh;
+    margin-top: 35vh;
 
     div.episode-cont {
       padding-bottom: 4vh;

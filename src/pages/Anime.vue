@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { onBeforeMount, reactive, ref } from "vue";
+import { onBeforeMount, reactive } from "vue";
 import { useRoute } from "vue-router";
 import { ROOT } from "../helpers/constants";
 import { getData } from "../helpers/fetch";
 import { setFlashCard } from "../store/flash";
 import router from "../router";
 import { toCapitalCase } from "../helpers/string";
+import auth from "../store/auth";
 
 const route = useRoute();
 let animeData = reactive({
@@ -168,12 +169,16 @@ onBeforeMount(async () => {
       </div>
 
       <div
+        v-if="auth.user?.role.toString() !== 'USER'"
         class="add-character helper-txt"
         @click="router.push(`/anime/${animeData.id}/character/add`)">
         Add Character
       </div>
 
-      <div class="add-va helper-txt" @click="router.push(`/va/add`)">
+      <div
+        v-if="auth.user?.role.toString() !== 'USER'"
+        class="add-va helper-txt"
+        @click="router.push(`/va/add`)">
         Add Voice Actor
       </div>
     </div>

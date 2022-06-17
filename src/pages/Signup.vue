@@ -43,6 +43,7 @@ async function submitForm() {
     <div class="helper-txt" @click="router.push('/login')">
       Already registered? Login here
     </div>
+    <div class="helper-txt" @click="router.push('/otp')">Verify OTP here</div>
   </div>
 </template>
 

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from "vue";
 import { toCapitalCase } from "../helpers/string";
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
   placeholder: string;
 }
 
-let { options, multiple, placeholder } = defineProps<Props>();
+let { options, multiple, placeholder, modelValue } = defineProps<Props>();
 </script>
 
 <template>
@@ -21,7 +20,9 @@ let { options, multiple, placeholder } = defineProps<Props>();
     :class="{ multiple }">
     <option value="" selected disabled>{{ placeholder }}</option>
     <template v-for="option in options">
-      <option :value="Object.values(option)[0]">
+      <option
+        :selected="modelValue === Object.values(option)[0]"
+        :value="Object.values(option)[0]">
         {{ toCapitalCase(Object.keys(option)[0]) }}
       </option>
     </template>

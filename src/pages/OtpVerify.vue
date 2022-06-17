@@ -5,6 +5,7 @@ import { ROOT } from "../helpers/constants";
 import InputText from "../components/InputText.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
+import router from "../router";
 
 const formData = reactive({
   identifier: "",
@@ -13,11 +14,17 @@ const formData = reactive({
 
 async function submitForm() {
   const response = await getData(`${ROOT}/otp/verify`, "post", formData);
+
+  if (response.success) {
+    router.push("/login");
+  }
+
   setFlashCard(response.success, response.message ?? response.error);
 }
 
 async function requestNewOtp() {
   const response = await getData(`${ROOT}/otp/new`, "post", formData);
+
   setFlashCard(response.success, response.message ?? response.error);
 }
 </script>

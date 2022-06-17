@@ -77,6 +77,21 @@ const SEASON_TYPE_OPTIONS: {
   { SPECIAL: "SPECIAL" },
 ];
 
+const RATING_OPTIONS: {
+  [key: string]: string;
+}[] = [
+  { "10 (Masteripiece)": "10" },
+  { "9 (Great)": "9" },
+  { "8 (Very Good)": "8" },
+  { "7 (Good)": "7" },
+  { "6 (Fine)": "6" },
+  { "5 (Average)": "5" },
+  { "4 (Bad)": "4" },
+  { "3 (Very Bad)": "3" },
+  { "2 (Horrible)": "2" },
+  { "1 (Appaling)": "1" },
+];
+
 export {
   ROOT,
   COUNTRY_OPTIONS,
@@ -84,4 +99,5 @@ export {
   ANIME_SEASON_OPTIONS,
   EPISODE_TYPE_OPTIONS,
   SEASON_TYPE_OPTIONS,
+  RATING_OPTIONS,
 };
