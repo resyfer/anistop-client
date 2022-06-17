@@ -104,12 +104,12 @@ onBeforeMount(async () => {
     `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/rating`
   );
 
-  if (response.success) {
+  if (ratingResponse.success) {
     rating.rating = Object.values(
       RATING_OPTIONS[10 - ratingResponse.message!.rating]
     )[0];
   } else {
-    setFlashCard(response.success, response.error);
+    setFlashCard(ratingResponse.success, ratingResponse.error);
   }
 });
 
@@ -120,7 +120,7 @@ async function updateRating() {
     { rating: rating.rating }
   );
   setFlashCard(response.success, response.error ?? response.message);
-  router.go(0); // refresh page for updated rating
+  // router.go(0); // refresh page for updated rating
 }
 
 async function deleteSeason(val: boolean) {

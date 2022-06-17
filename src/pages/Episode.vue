@@ -50,27 +50,6 @@ onBeforeMount(async () => {
   } else {
     setFlashCard(episodeInfo.success, episodeInfo.error);
   }
-
-  const episodeVideoInfo = await getData<{ videoUrl: string }>(
-    `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/${route.params.episodeNumber}/video`
-  );
-  if (episodeVideoInfo.success) {
-    episodeData.url = episodeVideoInfo.message!.videoUrl;
-  } else {
-    setFlashCard(episodeVideoInfo.success, episodeVideoInfo.error);
-  }
-
-  const episodeListInfo = await getData<typeof episodeList.episodes>(
-    `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/all`
-  );
-  if (episodeListInfo.success) {
-    episodeList.episodes.pop();
-    episodeListInfo.message!.forEach((episode) => {
-      episodeList.episodes.push(episode);
-    });
-  } else {
-    setFlashCard(episodeListInfo.success, episodeListInfo.error);
-  }
 });
 
 const dialogueVisibility = ref(false);

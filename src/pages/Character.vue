@@ -171,6 +171,13 @@ async function deleteCharacter(val: boolean) {
     </div>
 
     <div
+      v-if="auth.user?.role.toString() !== 'USER'"
+      class="add-va helper-txt"
+      @click="router.push(`/va/add`)">
+      Add Voice Actor
+    </div>
+
+    <div
       class="helper-txt"
       v-if="auth.user!.role.toString() !== 'USER'"
       @click="
