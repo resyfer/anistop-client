@@ -5,6 +5,8 @@ import { ROOT } from "../helpers/constants";
 import { getData } from "../helpers/fetch";
 import { setFlashCard } from "../store/flash";
 import router from "../router";
+import auth from "../store/auth";
+import Dialogue from "../components/Dialogue.vue";
 
 const route = useRoute();
 let characterData = reactive({
@@ -66,9 +68,32 @@ async function toggleFavorite() {
 
   favStatus.value = !favStatus.value;
 }
+
+const dialogueVisibility = ref(false);
+
+async function deleteCharacter(val: boolean) {
+  if (val) {
+    const response = await getData(
+      `${ROOT}/anime/${route.params.animeId}/character/${route.params.characterId}`,
+      "delete"
+    );
+
+    if (response.success) {
+      router.go(-1);
+    }
+
+    setFlashCard(response.success, response.error ?? response.message);
+  }
+
+  dialogueVisibility.value = false;
+}
 </script>
 
 <template>
+  <Dialogue
+    v-if="dialogueVisibility"
+    text="Are you sure you want to delete the character?"
+    @dialogue="deleteCharacter" />
   <div class="character">
     <div class="background">
       <div class="background-pic-cont">
@@ -143,6 +168,24 @@ async function toggleFavorite() {
           </div>
         </div>
       </template>
+    </div>
+
+    <div
+      class="helper-txt"
+      v-if="auth.user!.role.toString() !== 'USER'"
+      @click="
+        router.push(
+          `${ROOT}/anime/${route.params.animeId}/character/${route.params.characterId}/update`
+        )
+      ">
+      Update Character
+    </div>
+
+    <div
+      class="helper-txt"
+      v-if="auth.user!.role.toString() !== 'USER'"
+      @click="dialogueVisibility = true">
+      Delete Character
     </div>
   </div>
 </template>

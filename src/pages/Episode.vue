@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { onBeforeMount, reactive } from "vue";
+import { onBeforeMount, reactive, ref } from "vue";
 import { ROOT } from "../helpers/constants";
 import { getData } from "../helpers/fetch";
 import { useRoute } from "vue-router";
 import { setFlashCard } from "../store/flash";
 import Video from "../components/Video.vue";
 import router from "../router";
+import Dialogue from "../components/Dialogue.vue";
+import auth from "../store/auth";
 
 const route = useRoute();
 
@@ -70,9 +72,32 @@ onBeforeMount(async () => {
     setFlashCard(episodeListInfo.success, episodeListInfo.error);
   }
 });
+
+const dialogueVisibility = ref(false);
+
+async function deleteEpisode(val: boolean) {
+  if (val) {
+    const response = await getData(
+      `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/episode`,
+      "delete"
+    );
+
+    if (response.success) {
+      router.go(-1);
+    }
+
+    setFlashCard(response.success, response.error ?? response.message);
+  }
+
+  dialogueVisibility.value = false;
+}
 </script>
 
 <template>
+  <Dialogue
+    v-if="dialogueVisibility"
+    text="Are you sure you want to delete the season?"
+    @dialogue="deleteEpisode" />
   <div class="episode">
     <div class="episode-info-top">
       <div class="episode-name">
@@ -119,6 +144,23 @@ onBeforeMount(async () => {
           {{ episode.number }}
         </div>
       </template>
+    </div>
+
+    <div
+      class="helper-txt"
+      v-if="auth.user!.role.toString() !== 'USER'"
+      @click="
+        router.push(
+          `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/${route.params.episodeNumber}/update`
+        )
+      ">
+      Update Episode
+    </div>
+    <div
+      class="helper-txt"
+      v-if="auth.user!.role.toString() !== 'USER'"
+      @click="dialogueVisibility = true">
+      Delete Episode
     </div>
   </div>
 </template>

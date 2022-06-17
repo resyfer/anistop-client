@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { toCapitalCase } from "../helpers/string";
-
 interface Props {
   options: {
     [key: string]: string;
@@ -23,7 +21,7 @@ let { options, multiple, placeholder, modelValue } = defineProps<Props>();
       <option
         :selected="modelValue === Object.values(option)[0]"
         :value="Object.values(option)[0]">
-        {{ toCapitalCase(Object.keys(option)[0]) }}
+        {{ Object.keys(option)[0] }}
       </option>
     </template>
   </select>

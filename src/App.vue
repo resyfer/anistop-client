@@ -132,9 +132,13 @@ div.sub-title {
 .helper-txt {
   font-style: italic;
   text-decoration: underline;
-  margin: 1vh auto;
+  margin: 0 auto;
   cursor: pointer;
   width: fit-content;
-  margin-top: 3vh;
+  padding: 2vh;
+
+  &:hover {
+    color: var(--primary-100);
+  }
 }
 </style>

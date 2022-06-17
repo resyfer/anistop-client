@@ -2,7 +2,7 @@ const ROOT = "http://localhost:5000/api/v1";
 
 const COUNTRY_OPTIONS: {
   [key: string]: string;
-}[] = [{ japan: "JAPAN" }, { china: "CHINA" }, { korea: "KOREA" }];
+}[] = [{ Japan: "JAPAN" }, { China: "CHINA" }, { Korea: "KOREA" }];
 
 const GENRE_OPTIONS: {
   [key: string]: string;
@@ -57,15 +57,15 @@ const GENRE_OPTIONS: {
 const ANIME_SEASON_OPTIONS: {
   [key: string]: string;
 }[] = [
-  { WINTER: "WINTER" },
-  { SPRING: "SPRING" },
-  { SUMMER: "SUMMER" },
-  { FALL: "FALL" },
+  { Winter: "WINTER" },
+  { Spring: "SPRING" },
+  { Summer: "SUMMER" },
+  { Fall: "FALL" },
 ];
 
 const EPISODE_TYPE_OPTIONS: {
   [key: string]: string;
-}[] = [{ SUB: "SUB" }, { DUB: "DUB" }];
+}[] = [{ Sub: "SUB" }, { Dub: "DUB" }];
 
 const SEASON_TYPE_OPTIONS: {
   [key: string]: string;
@@ -73,8 +73,8 @@ const SEASON_TYPE_OPTIONS: {
   { "TV Series": "TV_SERIES" },
   { OVA: "OVA" },
   { ONA: "ONA" },
-  { MOVIE: "MOVIE" },
-  { SPECIAL: "SPECIAL" },
+  { Movie: "MOVIE" },
+  { Special: "SPECIAL" },
 ];
 
 const RATING_OPTIONS: {

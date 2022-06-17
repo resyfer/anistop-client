@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onBeforeMount, reactive } from "vue";
+import { onBeforeMount, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import { ROOT } from "../helpers/constants";
 import { getData } from "../helpers/fetch";
@@ -7,6 +7,7 @@ import { setFlashCard } from "../store/flash";
 import router from "../router";
 import { toCapitalCase } from "../helpers/string";
 import auth from "../store/auth";
+import Dialogue from "../components/Dialogue.vue";
 
 const route = useRoute();
 let animeData = reactive({
@@ -58,9 +59,32 @@ onBeforeMount(async () => {
     setFlashCard(response.success, response.error);
   }
 });
+
+const dialogueVisibility = ref(false);
+
+async function deleteAnime(val: boolean) {
+  if (val) {
+    const response = await getData(
+      `${ROOT}/anime/${route.params.animeId}`,
+      "delete"
+    );
+
+    if (response.success) {
+      router.go(-1);
+    }
+
+    setFlashCard(response.success, response.error ?? response.message);
+  }
+
+  dialogueVisibility.value = false;
+}
 </script>
 
 <template>
+  <Dialogue
+    v-if="dialogueVisibility"
+    text="Are you sure you want to delete the anime?"
+    @dialogue="deleteAnime" />
   <div class="anime">
     <div class="background">
       <div class="background-pic-cont">
@@ -180,6 +204,20 @@ onBeforeMount(async () => {
         class="add-va helper-txt"
         @click="router.push(`/va/add`)">
         Add Voice Actor
+      </div>
+
+      <div
+        v-if="auth.user?.role.toString() !== 'USER'"
+        class="update-anime helper-txt"
+        @click="router.push(`${ROOT}/anime/${route.params.animeId}/update`)">
+        Update Anime
+      </div>
+
+      <div
+        v-if="auth.user?.role.toString() !== 'USER'"
+        class="delete-anime helper-txt"
+        @click="dialogueVisibility = true">
+        Delete Anime
       </div>
     </div>
   </div>

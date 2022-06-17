@@ -7,6 +7,8 @@ import { setFlashCard } from "../store/flash";
 import router from "../router";
 import InputChoice from "../components/InputChoice.vue";
 import { RATING_OPTIONS } from "../helpers/constants";
+import Dialogue from "../components/Dialogue.vue";
+import auth from "../store/auth";
 
 const route = useRoute();
 
@@ -84,6 +86,8 @@ let seasonData = reactive<SeasonData>({
   },
 });
 
+const dialogueVisibility = ref(false);
+
 onBeforeMount(async () => {
   const response = await getData<SeasonData>(
     `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}`
@@ -118,9 +122,30 @@ async function updateRating() {
   setFlashCard(response.success, response.error ?? response.message);
   router.go(0); // refresh page for updated rating
 }
+
+async function deleteSeason(val: boolean) {
+  if (val) {
+    const response = await getData(
+      `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}`,
+      "delete"
+    );
+
+    if (response.success) {
+      router.go(-1);
+    }
+
+    setFlashCard(response.success, response.error ?? response.message);
+  }
+
+  dialogueVisibility.value = false;
+}
 </script>
 
 <template>
+  <Dialogue
+    v-if="dialogueVisibility"
+    text="Are you sure you want to delete the season?"
+    @dialogue="deleteSeason" />
   <div class="season">
     <div class="background">
       <div class="background-pic-cont">
@@ -203,6 +228,23 @@ async function updateRating() {
             </div>
           </template>
         </div>
+      </div>
+
+      <div
+        class="helper-txt"
+        v-if="auth.user!.role.toString() !== 'USER'"
+        @click="
+          router.push(
+            `/anime/${route.params.animeId}/season/${route.params.seasonId}/update`
+          )
+        ">
+        Update Season
+      </div>
+      <div
+        class="helper-txt"
+        v-if="auth.user!.role.toString() !== 'USER'"
+        @click="dialogueVisibility = true">
+        Delete Season
       </div>
     </div>
   </div>
