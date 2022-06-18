@@ -13,6 +13,8 @@ import Studio from "./pages/Studio.vue";
 import StudioAdd from "./pages/StudioAdd.vue";
 
 import VAAdd from "./pages/VAAdd.vue";
+
+import AnimeSeason from "./pages/AnimeSeason.vue";
 import AnimeSeasonAdd from "./pages/AnimeSeasonAdd.vue";
 
 import Season from "./pages/Season.vue";
@@ -104,6 +106,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/va/add",
     component: VAAdd,
+  },
+  {
+    path: "/anime_season/:year/:season",
+    component: AnimeSeason,
   },
   {
     path: "/anime_season/add",

@@ -26,6 +26,10 @@ interface SeasonData {
     posterUrl: string;
     backgroundImgUrl: string;
   };
+  animeSeasons: {
+    year: number;
+    seasonOfYear: string;
+  }[];
   episodes: {
     id: number;
     name: string;
@@ -76,6 +80,12 @@ let seasonData = reactive<SeasonData>({
           episodeId: 0,
         },
       ],
+    },
+  ],
+  animeSeasons: [
+    {
+      seasonOfYear: "",
+      year: 0,
     },
   ],
   _sum: {
@@ -207,6 +217,24 @@ async function deleteSeason(val: boolean) {
               Page Views: <span class="bold">{{ seasonData.views }}</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="seasons-of-year">
+        <div class="sub-title">Seasons Of Year</div>
+
+        <div class="anime-seasons-cont">
+          <template v-for="season in seasonData.animeSeasons">
+            <div
+              class="season"
+              @click="
+                router.push(
+                  `/anime_season/${season.year}/${season.seasonOfYear}`
+                )
+              ">
+              {{ season.year }} {{ season.seasonOfYear }}
+            </div>
+          </template>
         </div>
       </div>
 
@@ -356,9 +384,33 @@ div.season {
     }
   }
 
-  div.episodes {
+  div.seasons-of-year {
     margin-top: 35vh;
 
+    div.anime-seasons-cont {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      div.season {
+        margin: 0.5vh 1vh;
+        padding: 1.5vh 2vh;
+        border: 0.2vh solid var(--primary-100);
+        border-radius: 1vh;
+        transition: 0.2s ease-in-out;
+        cursor: pointer;
+        width: fit-content;
+
+        &:hover {
+          background-color: var(--primary-100);
+          color: var(--background-100);
+        }
+      }
+    }
+  }
+
+  div.episodes {
     div.episode-cont {
       padding-bottom: 4vh;
 
