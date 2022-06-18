@@ -1,15 +1,10 @@
 <script lang="ts" setup>
-import { onBeforeMount, reactive } from "vue";
+import { onBeforeMount, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import { ROOT } from "../helpers/constants";
 import { getData } from "../helpers/fetch";
 import { setFlashCard } from "../store/flash";
 import router from "../router";
-import InputNumber from "../components/InputNumber.vue";
-import InputChoice from "../components/InputChoice.vue";
-import { ANIME_SEASON_OPTIONS } from "../helpers/constants";
-import Button from "../components/Button.vue";
-import auth from "../store/auth";
 
 const route = useRoute();
 
@@ -23,16 +18,9 @@ const animes = reactive({
   ],
 });
 
-const search = reactive({
-  year: 0,
-  season: "",
-});
-
 onBeforeMount(async () => {
   const response = await getData(
-    `${ROOT}/anime_season/${route.params.year}/${route.params.season
-      .toString()
-      .toUpperCase()}/anime`
+    `${ROOT}/genre/${route.params.genre.toString().toUpperCase()}/anime`
   );
 
   if (response.success) {
@@ -41,33 +29,16 @@ onBeforeMount(async () => {
   } else {
     setFlashCard(response.success, response.error);
   }
-
-  search.year = parseInt(route.params.year as string);
-  search.season = route.params.season as string;
 });
 </script>
 
 <template>
   <div class="page-title">
-    {{ route.params.year }} {{ route.params.season.toString().toUpperCase() }}
+    {{ route.params.genre.toString().toUpperCase() }}
   </div>
-
-  <div class="search">
-    <InputNumber placeholder="Year" v-model="search.year" />
-    <InputChoice
-      placeholder="Season of Year"
-      :options="ANIME_SEASON_OPTIONS"
-      v-model="search.season" />
-    <Button
-      text="Search"
-      @click="
-        router.replace(`/anime_season/${search.year}/${search.season}`)
-      " />
-  </div>
-
   <div class="search-results">
     <div class="sub-title">
-      <span class="bold">{{ animes.search.length }}</span> Search Result(s)
+      <span class="bold">{{ animes.search.length }}</span> Anime(s)
     </div>
     <div class="anime-cont">
       <template v-for="anime in animes.search">
@@ -86,25 +57,14 @@ onBeforeMount(async () => {
       </template>
     </div>
   </div>
-
-  <div
-    class="helper-txt"
-    v-if="auth.user?.role.toString() !== 'USER'"
-    @click="router.push('/anime_season/add')">
-    Add Anime Season
-  </div>
 </template>
 
 <style lang="scss" scoped>
-div.search {
-  width: 80%;
-  margin: 0 auto;
+div.anime-search {
+  width: 100%;
+  padding: 2vh 4vh;
   display: flex;
   align-items: center;
-
-  div {
-    margin: 1vh;
-  }
 }
 
 div.search-results {

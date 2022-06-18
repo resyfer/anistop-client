@@ -226,7 +226,7 @@ async function deleteSeason(val: boolean) {
         <div class="anime-seasons-cont">
           <template v-for="season in seasonData.animeSeasons">
             <div
-              class="season"
+              class="anime-season"
               @click="
                 router.push(
                   `/anime_season/${season.year}/${season.seasonOfYear}`
@@ -393,7 +393,7 @@ div.season {
       justify-content: center;
       align-items: center;
 
-      div.season {
+      div.anime-season {
         margin: 0.5vh 1vh;
         padding: 1.5vh 2vh;
         border: 0.2vh solid var(--primary-100);

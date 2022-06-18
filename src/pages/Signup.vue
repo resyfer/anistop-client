@@ -7,6 +7,7 @@ import InputText from "../components/InputText.vue";
 import InputDate from "../components/InputDate.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
+import auth from "../store/auth";
 
 const formData = reactive({
   name: "",

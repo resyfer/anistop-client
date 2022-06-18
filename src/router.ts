@@ -30,6 +30,8 @@ import CharacterUpdateDetails from "./pages/CharacterUpdateDetails.vue";
 
 import Search from "./pages/Search.vue";
 
+import Genre from "./pages/Genre.vue";
+
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
@@ -130,6 +132,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/find",
     component: Search,
+  },
+  {
+    path: "/genre/:genre",
+    component: Genre,
   },
 ];
 
