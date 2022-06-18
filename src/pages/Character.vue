@@ -193,6 +193,17 @@ async function deleteCharacter(val: boolean) {
     <div
       class="helper-txt"
       v-if="auth.user!.role.toString() !== 'USER'"
+      @click="
+        router.push(
+          `/anime/${route.params.animeId}/character/${route.params.characterId}/update/image`
+        )
+      ">
+      Update Character Image
+    </div>
+
+    <div
+      class="helper-txt"
+      v-if="auth.user!.role.toString() !== 'USER'"
       @click="dialogueVisibility = true">
       Delete Character
     </div>

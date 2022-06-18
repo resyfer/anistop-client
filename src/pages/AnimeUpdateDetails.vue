@@ -62,7 +62,7 @@ function removeKeyword() {
 
 <template>
   <div class="anime-cont">
-    <h1>Add Anime</h1>
+    <h1>Update Anime Details</h1>
     <div class="anime-input-cont">
       <InputText placeholder="English Name *" v-model="formData.englishName" />
       <InputText

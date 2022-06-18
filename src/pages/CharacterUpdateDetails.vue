@@ -60,7 +60,7 @@ onBeforeMount(async () => {
 
 <template>
   <div class="season-cont">
-    <h1>Add Character</h1>
+    <h1>Update Character Details</h1>
     <div class="season-input-cont">
       <InputText placeholder="Name *" v-model="formData.name" />
       <InputArea placeholder="Description" v-model="formData.description" />

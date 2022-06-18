@@ -7,10 +7,13 @@ import Profile from "./pages/Profile.vue";
 
 import Anime from "./pages/Anime.vue";
 import AnimeAdd from "./pages/AnimeAdd.vue";
-import AnimeUpdate from "./pages/AnimeUpdate.vue";
+import AnimeUpdateDetails from "./pages/AnimeUpdateDetails.vue";
+import AnimeUpdatePoster from "./pages/AnimeUpdatePoster.vue";
+import AnimeUpdateBackground from "./pages/AnimeUpdateBackground.vue";
 
 import Studio from "./pages/Studio.vue";
 import StudioAdd from "./pages/StudioAdd.vue";
+import StudioUpdateDetails from "./pages/StudioUpdateDetails.vue";
 
 import VAAdd from "./pages/VAAdd.vue";
 
@@ -27,6 +30,7 @@ import EpisodeAdd from "./pages/EpisodeAdd.vue";
 import Character from "./pages/Character.vue";
 import CharacterAdd from "./pages/CharacterAdd.vue";
 import CharacterUpdateDetails from "./pages/CharacterUpdateDetails.vue";
+import CharacterUpdateImage from "./pages/CharacterUpdateImage.vue";
 
 import Search from "./pages/Search.vue";
 
@@ -71,7 +75,15 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/anime/:animeId/update/details",
-    component: AnimeUpdate,
+    component: AnimeUpdateDetails,
+  },
+  {
+    path: "/anime/:animeId/update/poster",
+    component: AnimeUpdatePoster,
+  },
+  {
+    path: "/anime/:animeId/update/background",
+    component: AnimeUpdateBackground,
   },
   {
     path: "/anime/:animeId",
@@ -102,6 +114,10 @@ const routes: RouteRecordRaw[] = [
     component: StudioAdd,
   },
   {
+    path: "/studio/:studioId/update/details",
+    component: StudioUpdateDetails,
+  },
+  {
     path: "/studio/:studioId",
     component: Studio,
   },
@@ -120,6 +136,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/anime/:animeId/character/add",
     component: CharacterAdd,
+  },
+  {
+    path: "/anime/:animeId/character/:characterId/update/image",
+    component: CharacterUpdateImage,
   },
   {
     path: "/anime/:animeId/character/:characterId/update/details",

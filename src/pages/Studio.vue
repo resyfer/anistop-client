@@ -97,14 +97,14 @@ async function deleteStudio(val: boolean) {
   <div
     class="helper-txt"
     v-if="auth.user!.role.toString() !== 'USER'"
-    @click="router.push(`/studio/${route.params.studioId}/edit/details`)">
+    @click="router.push(`/studio/${route.params.studioId}/update/details`)">
     Update Studio Details
   </div>
 
   <div
     class="helper-txt"
     v-if="auth.user!.role.toString() !== 'USER'"
-    @click="router.push(`/studio/${route.params.studioId}/edit/logo`)">
+    @click="router.push(`/studio/${route.params.studioId}/update/logo`)">
     Update Studio Logo
   </div>
 
