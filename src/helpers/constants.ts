@@ -92,6 +92,14 @@ const RATING_OPTIONS: {
   { "1 (Appaling)": "1" },
 ];
 
+const STATUS_OPTIONS: {
+  [key: string]: string;
+}[] = [
+  { Upcoming: "UPCOMING" },
+  { Ongoing: "ONGOING" },
+  { Completed: "COMPLETED" },
+];
+
 export {
   ROOT,
   COUNTRY_OPTIONS,
@@ -100,4 +108,5 @@ export {
   EPISODE_TYPE_OPTIONS,
   SEASON_TYPE_OPTIONS,
   RATING_OPTIONS,
+  STATUS_OPTIONS,
 };

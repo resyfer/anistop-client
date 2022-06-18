@@ -14,6 +14,7 @@ import AnimeSeasonAdd from "./pages/AnimeSeasonAdd.vue";
 
 import Season from "./pages/Season.vue";
 import SeasonAdd from "./pages/SeasonAdd.vue";
+import SeasonUpdate from "./pages/SeasonUpdate.vue";
 
 import Episode from "./pages/Episode.vue";
 import EpisodeAdd from "./pages/EpisodeAdd.vue";
@@ -67,6 +68,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/anime/:animeId/season/add",
     component: SeasonAdd,
+  },
+  {
+    path: "/anime/:animeId/season/:seasonId/update",
+    component: SeasonUpdate,
   },
   {
     path: "/anime/:animeId/season/:seasonId",

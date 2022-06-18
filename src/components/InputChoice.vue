@@ -16,7 +16,9 @@ let { options, multiple, placeholder, modelValue } = defineProps<Props>();
     :multiple="multiple"
     @input="$emit('update:modelValue', (multiple) ? [...($event.target as HTMLSelectElement).options].filter(option => option.selected).map(option => option.value) : ($event.target as HTMLSelectElement).value)"
     :class="{ multiple }">
-    <option value="" selected disabled>{{ placeholder }}</option>
+    <option value="" :selected="modelValue === ''" disabled>
+      {{ placeholder }}
+    </option>
     <template v-for="option in options">
       <option
         :selected="modelValue === Object.values(option)[0]"
