@@ -120,7 +120,6 @@ async function updateRating() {
     { rating: rating.rating }
   );
   setFlashCard(response.success, response.error ?? response.message);
-  // router.go(0); // refresh page for updated rating
 }
 
 async function deleteSeason(val: boolean) {

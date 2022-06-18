@@ -12,6 +12,7 @@ const { placeholder } = defineProps<Props>();
     <textarea
       :placeholder="placeholder"
       rows="3"
+      :value="modelValue"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"></textarea>
   </div>
 </template>

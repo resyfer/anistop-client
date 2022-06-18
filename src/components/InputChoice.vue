@@ -16,12 +16,19 @@ let { options, multiple, placeholder, modelValue } = defineProps<Props>();
     :multiple="multiple"
     @input="$emit('update:modelValue', (multiple) ? [...($event.target as HTMLSelectElement).options].filter(option => option.selected).map(option => option.value) : ($event.target as HTMLSelectElement).value)"
     :class="{ multiple }">
-    <option value="" :selected="modelValue === ''" disabled>
+    <option
+      value=""
+      :selected="multiple ? modelValue === [''] : modelValue === ''"
+      disabled>
       {{ placeholder }}
     </option>
     <template v-for="option in options">
       <option
-        :selected="modelValue === Object.values(option)[0]"
+        :selected="
+          multiple
+            ? modelValue.indexOf(Object.values(option)[0]) !== -1
+            : modelValue === Object.values(option)[0]
+        "
         :value="Object.values(option)[0]">
         {{ Object.keys(option)[0] }}
       </option>

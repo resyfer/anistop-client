@@ -122,6 +122,16 @@ div.background-tint {
   );
 }
 
+div.page-title {
+  padding-left: 4vh;
+  margin: 2vh 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--primary-100);
+  font-weight: bold;
+}
+
 div.sub-title {
   padding-left: 4vh;
   border-bottom: 0.2vh solid var(--primary-100);

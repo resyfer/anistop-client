@@ -18,7 +18,7 @@ const GENRE_OPTIONS: {
   { Drama: "DRAMA" },
   { Ecchi: "ECCHI" },
   { Fantasy: "FANTASY" },
-  { game: "GAME" },
+  { Game: "GAME" },
   { "Gender Bender": "GENDER_BENDER" },
   { "Girl's Love": "GIRLS_LOVE" },
   { Gourmet: "GOURMET" },

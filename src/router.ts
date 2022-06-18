@@ -7,8 +7,11 @@ import Profile from "./pages/Profile.vue";
 
 import Anime from "./pages/Anime.vue";
 import AnimeAdd from "./pages/AnimeAdd.vue";
+import AnimeUpdate from "./pages/AnimeUpdate.vue";
 
+import Studio from "./pages/Studio.vue";
 import StudioAdd from "./pages/StudioAdd.vue";
+
 import VAAdd from "./pages/VAAdd.vue";
 import AnimeSeasonAdd from "./pages/AnimeSeasonAdd.vue";
 
@@ -62,6 +65,10 @@ const routes: RouteRecordRaw[] = [
     component: AnimeAdd,
   },
   {
+    path: "/anime/:animeId/update",
+    component: AnimeUpdate,
+  },
+  {
     path: "/anime/:animeId",
     component: Anime,
   },
@@ -88,6 +95,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/studio/add",
     component: StudioAdd,
+  },
+  {
+    path: "/studio/:studioId",
+    component: Studio,
   },
   {
     path: "/va/add",
