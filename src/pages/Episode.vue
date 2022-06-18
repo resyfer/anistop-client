@@ -50,6 +50,26 @@ onBeforeMount(async () => {
   } else {
     setFlashCard(episodeInfo.success, episodeInfo.error);
   }
+
+  const episodeVideoInfo = await getData<{ videoUrl: string }>(
+    `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/${route.params.episodeNumber}/video`
+  );
+  if (episodeVideoInfo.success) {
+    episodeData.url = episodeVideoInfo.message!.videoUrl;
+  } else {
+    setFlashCard(episodeVideoInfo.success, episodeVideoInfo.error);
+  }
+  const episodeListInfo = await getData<typeof episodeList.episodes>(
+    `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/all`
+  );
+  if (episodeListInfo.success) {
+    episodeList.episodes = [];
+    episodeListInfo.message!.forEach((episode) => {
+      episodeList.episodes.push(episode);
+    });
+  } else {
+    setFlashCard(episodeListInfo.success, episodeListInfo.error);
+  }
 });
 
 const dialogueVisibility = ref(false);
@@ -116,7 +136,7 @@ async function deleteEpisode(val: boolean) {
             { active: episode.number === episodeData.number },
           ]"
           @click="
-            router.push(
+            router.replace(
               `/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/${episode.number}`
             )
           ">
@@ -130,10 +150,10 @@ async function deleteEpisode(val: boolean) {
       v-if="auth.user!.role.toString() !== 'USER'"
       @click="
         router.push(
-          `${ROOT}/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/${route.params.episodeNumber}/update`
+          `/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/${route.params.episodeNumber}/update/video`
         )
       ">
-      Update Episode
+      Update Episode Video
     </div>
     <div
       class="helper-txt"

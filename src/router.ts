@@ -24,6 +24,7 @@ import EpisodeAdd from "./pages/EpisodeAdd.vue";
 
 import Character from "./pages/Character.vue";
 import CharacterAdd from "./pages/CharacterAdd.vue";
+import CharacterUpdateDetails from "./pages/CharacterUpdateDetails.vue";
 
 import Search from "./pages/Search.vue";
 
@@ -65,7 +66,7 @@ const routes: RouteRecordRaw[] = [
     component: AnimeAdd,
   },
   {
-    path: "/anime/:animeId/update",
+    path: "/anime/:animeId/update/details",
     component: AnimeUpdate,
   },
   {
@@ -111,6 +112,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/anime/:animeId/character/add",
     component: CharacterAdd,
+  },
+  {
+    path: "/anime/:animeId/character/:characterId/update/details",
+    component: CharacterUpdateDetails,
   },
   {
     path: "/anime/:animeId/character/:characterId",

@@ -158,16 +158,18 @@ async function deleteCharacter(val: boolean) {
     <div class="vas">
       <div class="sub-title">Voice Actors</div>
 
-      <template v-for="va in characterData.vas">
-        <div class="va">
-          <div class="img">
-            <img :src="va.imgUrl" :alt="va.name" loading="lazy" />
+      <div class="va-cont">
+        <template v-for="va in characterData.vas">
+          <div class="va">
+            <div class="img">
+              <img :src="va.imgUrl" :alt="va.name" loading="lazy" />
+            </div>
+            <div class="info">
+              <span class="bold">{{ va.name }}</span>
+            </div>
           </div>
-          <div class="info">
-            <span class="bold">{{ va.name }}</span>
-          </div>
-        </div>
-      </template>
+        </template>
+      </div>
     </div>
 
     <div
@@ -182,10 +184,10 @@ async function deleteCharacter(val: boolean) {
       v-if="auth.user!.role.toString() !== 'USER'"
       @click="
         router.push(
-          `${ROOT}/anime/${route.params.animeId}/character/${route.params.characterId}/update`
+          `/anime/${route.params.animeId}/character/${route.params.characterId}/update/details`
         )
       ">
-      Update Character
+      Update Character Details
     </div>
 
     <div
@@ -329,35 +331,38 @@ div.character {
   }
 
   div.vas {
-    div.va {
-      position: relative;
-      margin: 4vh;
-      width: 30%;
-      height: 30vh;
+    div.va-cont {
       display: flex;
-      border-radius: 2vh;
-      overflow: hidden;
-      border: 0.2vh solid var(--primary-100);
-      cursor: pointer;
-
-      div.img {
+      div.va {
         position: relative;
-        height: 100%;
-        aspect-ratio: 3/4;
-        overflow: hidden;
-
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-        }
-      }
-
-      div.info {
+        margin: 4vh;
+        width: 30%;
+        height: 30vh;
         display: flex;
-        align-items: center;
-        padding: 4vh;
+        border-radius: 2vh;
+        overflow: hidden;
+        border: 0.2vh solid var(--primary-100);
+        cursor: pointer;
+
+        div.img {
+          position: relative;
+          height: 100%;
+          aspect-ratio: 3/4;
+          overflow: hidden;
+
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+          }
+        }
+
+        div.info {
+          display: flex;
+          align-items: center;
+          padding: 4vh;
+        }
       }
     }
   }

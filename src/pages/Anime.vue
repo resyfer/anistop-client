@@ -209,8 +209,8 @@ async function deleteAnime(val: boolean) {
       <div
         v-if="auth.user?.role.toString() !== 'USER'"
         class="update-anime helper-txt"
-        @click="router.push(`/anime/${route.params.animeId}/update`)">
-        Update Anime
+        @click="router.push(`/anime/${route.params.animeId}/update/details`)">
+        Update Anime Details
       </div>
 
       <div
