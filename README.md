@@ -5,6 +5,17 @@ AniStop is a multimedia streaming and management platform where you can keep tra
 
 [Backend](https://github.com/resyfer/anistop-api)
 
+## Tech Stack
+- TypeScript
+- Vue 3
+- SASS
+- Vite
+- AWS S3
+- NodeJS
+- Express
+- Prisma
+- PostgreSQL
+
 ## Installation
 - [Ensure backend is running first is installed](https://github.com/resyfer/anistop-api).
 
