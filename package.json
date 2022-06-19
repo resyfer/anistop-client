@@ -10,6 +10,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "lint-staged": "^12.4.1",
     "vue": "^3.2.25",
     "vue-router": "4"
