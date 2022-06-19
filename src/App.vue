@@ -151,4 +151,12 @@ div.sub-title {
     color: var(--primary-100);
   }
 }
+
+.info-txt {
+  font-style: italic;
+  text-decoration: underline;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 2vh;
+}
 </style>

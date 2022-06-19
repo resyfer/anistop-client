@@ -160,7 +160,7 @@ async function deleteCharacter(val: boolean) {
 
       <div class="va-cont">
         <template v-for="va in characterData.vas">
-          <div class="va">
+          <div class="va" @click="router.push(`/va/${va.id}`)">
             <div class="img">
               <img :src="va.imgUrl" :alt="va.name" loading="lazy" />
             </div>

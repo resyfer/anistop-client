@@ -1,53 +1,64 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { onBeforeMount, reactive } from "vue";
 import { getData } from "../helpers/fetch";
 import { ROOT } from "../helpers/constants";
 import InputText from "../components/InputText.vue";
 import InputDate from "../components/InputDate.vue";
-import InputFile from "../components/InputFile.vue";
 import InputArea from "../components/InputArea.vue";
 import Button from "../components/Button.vue";
 import { setFlashCard } from "../store/flash";
+import { useRoute } from "vue-router";
+import { JP_TIMEZONE_OFFSET } from "../helpers/constants";
 
-interface Form {
-  name: string;
-  imgUrl: string | File;
-  dob: "";
-  more: string;
-}
-
-const form = reactive<Form>({
+const formData = reactive({
   name: "",
-  imgUrl: "",
   dob: "",
   more: "",
 });
 
-async function submitForm() {
-  const formData = new FormData();
-  formData.append("name", form.name);
-  formData.append("dob", form.dob);
-  formData.append("more", form.more);
-  formData.append("imgUrl", form.imgUrl, form.name);
+const route = useRoute();
 
-  const response = await getData(`${ROOT}/va/add`, "post", formData, {
-    "Content-Type": "multipart/form-data",
-  });
+async function submitForm() {
+  const response = await getData(
+    `${ROOT}/va/${route.params.vaId}`,
+    "patch",
+    formData
+  );
   setFlashCard(response.success, response.message ?? response.error);
 }
+
+onBeforeMount(async () => {
+  const response = await getData<typeof formData>(
+    `${ROOT}/va/${route.params.vaId}`
+  );
+
+  if (response.success) {
+    Object.assign(formData, response.message);
+
+    let startTime = new Date(response.message!.dob);
+    formData.dob = new Date(
+      startTime.getTime() +
+        (JP_TIMEZONE_OFFSET - startTime.getTimezoneOffset()) * 60 * 1000
+    )
+      .toISOString()
+      .split("T")[0];
+    console.log(startTime.getTime());
+  } else {
+    setFlashCard(response.success, response.error);
+  }
+});
 </script>
 
 <template>
   <div class="va-cont">
-    <h1>Add Voice Actor</h1>
+    <h1>Update Voice Actor Details</h1>
     <div class="va-input-cont">
-      <InputText placeholder="Name *" v-model="form.name" />
-      <InputDate v-model="form.dob" />
+      <InputText placeholder="Name *" v-model="formData.name" />
+      <InputDate v-model="formData.dob" />
       <span class="info-txt">Date in Japanese TimeZone (UTC +0900)</span>
       <br />
       <br />
-      <InputArea placeholder="More" v-model="form.more" />
-      <InputFile placeholder="Image *" v-model="form.imgUrl" />
+      <InputArea placeholder="More" v-model="formData.more" />
     </div>
     <Button text="Submit" class="submit-btn" @click="submitForm" />
   </div>

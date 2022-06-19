@@ -15,7 +15,10 @@ import Studio from "./pages/Studio.vue";
 import StudioAdd from "./pages/StudioAdd.vue";
 import StudioUpdateDetails from "./pages/StudioUpdateDetails.vue";
 
+import VA from "./pages/VA.vue";
 import VAAdd from "./pages/VAAdd.vue";
+import VAUpdateDetails from "./pages/VAUpdateDetails.vue";
+import VAUpdateImage from "./pages/VAUpdateImage.vue";
 
 import AnimeSeason from "./pages/AnimeSeason.vue";
 import AnimeSeasonAdd from "./pages/AnimeSeasonAdd.vue";
@@ -124,6 +127,18 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/va/add",
     component: VAAdd,
+  },
+  {
+    path: "/va/:vaId/update/details",
+    component: VAUpdateDetails,
+  },
+  {
+    path: "/va/:vaId/update/img",
+    component: VAUpdateImage,
+  },
+  {
+    path: "/va/:vaId",
+    component: VA,
   },
   {
     path: "/anime_season/:year/:season",

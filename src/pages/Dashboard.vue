@@ -20,7 +20,7 @@ async function sendSearchQuery() {
       <InputText placeholder="Search Anime" v-model="searchParam" />
     </div>
     <div class="btn-cont">
-      <Button outline text="Recent" @click="router.push('/recent')" />
+      <!-- <Button outline text="Recent" @click="router.push('/recent')" /> -->
       <Button outline text="Profile" @click="router.push('/profile')" />
       <Button text="Search" @click="sendSearchQuery" />
     </div>

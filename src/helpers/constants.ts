@@ -100,6 +100,8 @@ const STATUS_OPTIONS: {
   { Completed: "COMPLETED" },
 ];
 
+const JP_TIMEZONE_OFFSET = 540;
+
 export {
   ROOT,
   COUNTRY_OPTIONS,
@@ -109,4 +111,5 @@ export {
   SEASON_TYPE_OPTIONS,
   RATING_OPTIONS,
   STATUS_OPTIONS,
+  JP_TIMEZONE_OFFSET,
 };
