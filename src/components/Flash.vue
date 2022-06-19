@@ -18,7 +18,7 @@ import { flash, setFlashCard } from "../store/flash";
 div.flash {
   position: relative;
   height: 7.5vh;
-  width: 95%;
+  width: 99%;
   margin: 1vh auto;
   border-radius: 2vh;
   display: flex;

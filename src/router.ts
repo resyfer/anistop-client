@@ -39,6 +39,8 @@ import Search from "./pages/Search.vue";
 
 import Genre from "./pages/Genre.vue";
 
+import User from "./pages/User.vue";
+
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
@@ -69,8 +71,12 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/profile",
-    component: Profile,
+    component: User,
     name: "Profile",
+  },
+  {
+    path: "/user/:userId",
+    component: User,
   },
   {
     path: "/anime/add",

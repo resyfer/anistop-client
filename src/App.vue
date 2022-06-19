@@ -7,6 +7,7 @@ import { getData } from "./helpers/fetch";
 import { ROOT } from "./helpers/constants";
 import { User } from "./types/user";
 import { useRoute } from "vue-router";
+import Navbar from "./components/Navbar.vue";
 
 const publicRoutes = ["Home", "Login", "Signup", "OTP"];
 const route = useRoute();
@@ -54,6 +55,7 @@ onBeforeMount(async () => {
 
 <template>
   <Flash />
+  <Navbar />
   <router-view :key="route.fullPath"></router-view>
 </template>
 

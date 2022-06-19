@@ -262,6 +262,16 @@ async function deleteSeason(val: boolean) {
         v-if="auth.user!.role.toString() !== 'USER'"
         @click="
           router.push(
+            `/anime/${route.params.animeId}/season/${route.params.seasonId}/episode/add`
+          )
+        ">
+        Add Episode
+      </div>
+      <div
+        class="helper-txt"
+        v-if="auth.user!.role.toString() !== 'USER'"
+        @click="
+          router.push(
             `/anime/${route.params.animeId}/season/${route.params.seasonId}/update`
           )
         ">
