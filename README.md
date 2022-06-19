@@ -17,7 +17,7 @@ AniStop is a multimedia streaming and management platform where you can keep tra
 - PostgreSQL
 
 ## Installation
-- [Ensure backend is running first is installed](https://github.com/resyfer/anistop-api).
+- [Ensure backend is installed and running](https://github.com/resyfer/anistop-api).
 
 - Clone the repo and then
 ```
