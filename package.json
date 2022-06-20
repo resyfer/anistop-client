@@ -7,7 +7,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "serve": "serve dist"
   },
   "dependencies": {
     "axios": "^0.27.2",
