@@ -1,4 +1,4 @@
-const ROOT = "http://localhost:5000/api/v1";
+const ROOT = `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1`;
 
 const COUNTRY_OPTIONS: {
   [key: string]: string;
